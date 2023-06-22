@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ErrorMessage from './ErrorMessage';
-import { validateEmpty, validateUsername } from '../validation';
 
 
 const Signup = () => {

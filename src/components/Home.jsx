@@ -48,14 +48,14 @@ const Home = () => {
             <h2 className="text-4xl  pt-4 font-bold ">{title}</h2>
             </Link>
             <div>
-            <a className=" font-bold text-sm pr-4">{author.username}</a>
+            <p className=" font-bold text-sm pr-4">{author.username}</p>
             <time className="text-sm">{formatDate(createdAt)}</time>
             </div>
             <p className="md:text-xl my-y text-sm">{summary}...</p>
           </div>
           <Link to={`/post/${_id}`}>
           <div>
-            <img className="pb-10   h-3/4" src={`${process.env.REACT_APP_API_URL}/${cover}`} alt="Image" />
+            <img className="pb-10   h-3/4" src={`${process.env.REACT_APP_API_URL}/${cover}`} alt="" />
           </div>
           </Link>
         </div>

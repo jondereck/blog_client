@@ -13,7 +13,7 @@ const Post = () => {
         setPostInfo(postInfo);
       });
     });
-  }, []);
+  }, [id]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -56,7 +56,7 @@ const Post = () => {
           <img
             className="object-cover object-center mb-8"
             src={`${process.env.REACT_APP_API_URL}/${postInfo.cover}`}
-            alt="image"
+            alt=""
           />
         </div>
 

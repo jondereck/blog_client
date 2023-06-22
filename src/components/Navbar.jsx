@@ -14,7 +14,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         setUserInfo(userInfo);
       });
     });
-  }, []);
+  }, [setUserInfo]);
 
   function logout() {
     fetch(`${process.env.REACT_APP_API_URL}/logout`, {
@@ -35,7 +35,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           {username ? (
             <>
               <Link to="/create" className="hover:scale-105 duration-200">Create new post</Link>
-              <a onClick={logout} className="hover:scale-105 duration-200">Logout</a>
+              <p onClick={logout} className="hover:scale-105 duration-200">Logout</p>
             </>
           ) : (
             <>

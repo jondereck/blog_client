@@ -25,7 +25,7 @@ const EditPost = () => {
       .catch((error) => {
         console.log('Error fetching post:', error);
       });
-  }, []);
+  }, [id]);
   async function updatePost(e) {
     e.preventDefault();
     const data = new FormData();
