@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ErrorMessage from './ErrorMessage';
+import FormError from './FormError';
 
 
 const Signup = () => {
@@ -12,38 +13,27 @@ const Signup = () => {
 
   async function register(e) {
     e.preventDefault();
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+   fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
-    });
+    })
+      .then((response) => {
+        if(response.ok) {
+          response.json().then((data) => {
+            setSuccess(data.success);
+            setTimeout(() =>{
+              window.location.href="/login";
+              console.log("redirecting to login");
+            }, 2000);
+          });
+        } else {
+          response.json().then((data) => {
+            setError(data.error);
+          });
+        }
+      })
   
-    if (response.ok) {
-      // Registration successful
-      setSuccess("Registration successful");
-      setError("");
-    } else {
-      const data = await response.json();
-      if (data.error) {
-        // Validation errors occurred
-        // setError(data.error.join(", "));
-      } else if (data.error === "Username already taken") {
-        // Username is already taken
-        setError("Username is already taken");
-        
-      } else if (data.error === "Username should be at least 4 characters long") {
-        // Username is already taken
-        setError("Username should be at least 4 characters long");
-        
-      }else if (data.error === "Password should contain at least one lowercase, uppercase letter, and  digit") {
-        // Username is already taken
-        setError("Password should contain at least one lowercase, uppercase letter, and  digit");
-        
-      }else {
-        // Other registration error
-        setError("Registration failed");
-      }
-    }
   }
   
   return (
@@ -63,7 +53,7 @@ const Signup = () => {
             type="text"
             placeholder="Username"
           /> 
-      
+          <FormError error={error.username}/>
           <input
             className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
             value={password}
@@ -71,7 +61,7 @@ const Signup = () => {
            
             type="password"
             placeholder="Password"
-          />
+          /> <FormError error={error.password}/>
           <button
             className="p-2 bg-gradient-to-r from-cyan-500 to to-blue-500 text-white rounded-md"
             

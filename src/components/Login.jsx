@@ -9,7 +9,8 @@ const Login = () => {
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [redirect, setRedirect] = useState(false);
   const {setUserInfo} = useContext(UserContext);
 
@@ -26,8 +27,12 @@ const Login = () => {
 
     if (response.ok) {
       response.json().then(userInfo => {
-        setUserInfo(userInfo)
-         setRedirect(true);
+        setUserInfo(userInfo);
+        setSuccess("Login success");
+        setTimeout(() => {
+         setRedirect(true); 
+        }, 2000);
+         
       })
      
     } else { 
@@ -77,7 +82,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-    <ErrorMessage error={error}/>
+    <ErrorMessage error={error} success={success}/>
     </div>
   </div>
   
