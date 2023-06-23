@@ -31,12 +31,16 @@ const CreatePost = () => {
     // console.log(await response.json())
     if (response.ok) {
       setSuccess("Successfully created post");
-      setRedirect(true);
+      setTimeout(() => {
+        setRedirect(true);
+      }, 2000);
+      
       setErrors("");
     } else {
-      //   setError('An error occurred during post creation.');
+      setErrors('An error occurred during post creation.');
       const data = await response.json();
       setErrors(data.errors || {});
+      
     }
   }
   if (redirect) {
@@ -49,9 +53,9 @@ const CreatePost = () => {
         className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center 
         w-full h-full items-center"
       >
-        <div className="flex justify-center items-center " >
+        <div className="flex justify-center items-center mt-20 " >
           <form
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
             onSubmit={createNewPost}
             className="flex flex-col w-full"
           >
@@ -62,7 +66,7 @@ const CreatePost = () => {
               type="title"
               placeholder="Title"
             />
-            <FormError   error={errors.title} />
+            <FormError  error={errors.title} />
 
             <input
               className="p-2 bg-transparent border-2 rounded-md focus:outline-none mt-2"

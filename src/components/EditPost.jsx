@@ -11,8 +11,10 @@ const EditPost = () => {
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
-  const [error, setError] = useState('')
+
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/post/` + id)
@@ -37,36 +39,39 @@ const EditPost = () => {
       data.set("file", files?.[0]);
     }
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/post`, {
+    fetch(`${process.env.REACT_APP_API_URL}/post`, {
       method: 'PUT',
       body: data,
-      credentials: 'include'
-    });
-    if (response.ok) {
-      setRedirect(true);
-    }else {
-      const errorData  = await response.json()
-      if (errorData.error === 'You are not the author') {
-        setError('You are not the author');
-      } else if (errorData.error === 'Title must have more than 4 characters long') {
-        setError('Title must have more than 4 characters long');
-      } else if (errorData.error === 'Summary must have more than 20 characters long') {
-        setError('Summary must have more than 20 characters long');
-      } else if (errorData.error === 'Content must have more than 20 characters long') {
-        setError('Content must have more than 20 characters long');
+      credentials: 'include',
+    })
+    .then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          setSuccess(data.success);
+          setTimeout(() => {
+            setRedirect(true);
+          }, 2000); 
+        });
+        // Replace "/posts" with your desired route
       } else {
-        setError('An error occurred');
+        response.json().then((data) => {
+          setError(data.error);
+        });
       }
-      
+      setTimeout(() => {
+        setRedirect(true);
+      }, 2000);
+    })
+    
 
-    }
+    
   }
   if (redirect) {
     return <Navigate to={"/post/" + id} />;
   }
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-screen w-full px-4 pb-20">
       <div
         className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center 
     w-full h-full items-center"
@@ -86,13 +91,6 @@ const EditPost = () => {
             />
             <input
               className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
-              ve
-              they
-              can
-              monetize
-              the
-              climate
-              crisis
               type="summary"
               onChange={(e) => setSummary(e.target.value)}
               value={summary}
@@ -109,7 +107,7 @@ const EditPost = () => {
               Update post
             </button>
           </form>
-          <ErrorMessage error={error}/>
+          <ErrorMessage error={error} success={success}/>
           
         </div>
       </div>

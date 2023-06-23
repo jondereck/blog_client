@@ -18,7 +18,7 @@ const ErrorMessage = ({ error, success }) => {
 
   const alertClassName = error ? "bg-red-500" : "bg-green-500";
   const borderClassName = error ? "border-red-400 bg-red-100 text-red-700" : "border-green-400 bg-green-100 text-green-700";
-  const containerClassName = "fixed justify-center bottom-4 sm:bottom-4  sm:right-4 sm:right-auto";
+  const containerClassName = "fixed justify-center  bottom-4 sm:bottom-4  sm:right-4 sm:right-auto";
 
 
 
