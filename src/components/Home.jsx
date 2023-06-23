@@ -43,13 +43,13 @@ const Home = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8" key={_id}>
       <div className="flex flex-col justify-center">
         <Link to={`/post/${_id}`}>
-          <h2 className="text-4xl pt-4 font-bold text-gray-800 hover:text-blue-500 transition duration-300">{title}</h2>
+          <h2 className="text-4xl pt-4 font-bold ">{title}</h2>
         </Link>
         <div className="flex items-center justify-between">
-          <p className="font-bold text-sm pr-4 text-gray-700">{author.username}</p>
-          <time className="text-sm text-gray-500">{formatDate(createdAt)}</time>
+          <p className="font-bold text-sm pr-4">{author.username}</p>
+          <time className="text-sm ">{formatDate(createdAt)}</time>
         </div>
-        <p className="md:text-xl my-2 text-sm text-gray-700">{summary}...</p>
+        <p className="md:text-xl my-2 text-sm">{summary}...</p>
       </div>
       <Link to={`/post/${_id}`}>
         <div className="flex items-center justify-center">
