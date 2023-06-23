@@ -12,7 +12,7 @@ const Signup = () => {
 
   async function register(e) {
     e.preventDefault();
-    const response = await fetch("API_PORT/register", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -26,7 +26,7 @@ const Signup = () => {
       const data = await response.json();
       if (data.error) {
         // Validation errors occurred
-        setError(data.error.join(", "));
+        // setError(data.error.join(", "));
       } else if (data.error === "Username already taken") {
         // Username is already taken
         setError("Username is already taken");
