@@ -71,47 +71,40 @@ const EditPost = () => {
   }
 
   return (
-    <div className="h-screen w-full px-4 pb-20">
-      <div
-        className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center 
-    w-full h-full items-center"
-      >
-        <div className="flex justify-center items-center">
-          <form
-            enctype="multipart/form-data"
-            onSubmit={updatePost}
-            className="flex flex-col w-full"
-          >
-            <input
-              className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              type="title"
-              placeholder="Title"
-            />
-            <input
-              className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
-              type="summary"
-              onChange={(e) => setSummary(e.target.value)}
-              value={summary}
-              placeholder="Summary"
-            />
-            <input
-              className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
-              type="file"
-              onChange={(e) => setFiles(e.target.files)}
-            />
-            <Editor onChange={setContent} value={content} />
+    <div className="h-screen w-full max-h-max px-4 pb-20 pt-20">
+  <div className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center w-full h-full items-center">
+    <div className="flex justify-center items-center">
+      <form enctype="multipart/form-data" onSubmit={updatePost} className="flex flex-col w-full">
+        <input
+          className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          type="title"
+          placeholder="Title"
+        />
+        <input
+          className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
+          type="summary"
+          onChange={(e) => setSummary(e.target.value)}
+          value={summary}
+          placeholder="Summary"
+        />
+        <input
+          className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
+          type="file"
+          onChange={(e) => setFiles(e.target.files)}
+        />
+        <Editor onChange={setContent} value={content} />
 
-            <button className="p-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500">
-              Update post
-            </button>
-          </form>
-          <ErrorMessage error={error} success={success}/>
-          
-        </div>
-      </div>
+        <button className="p-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500">
+          Update post
+        </button>
+      </form>
+      <ErrorMessage error={error} success={success} />
     </div>
+  </div>
+</div>
+
   );
 };
 
