@@ -37,7 +37,7 @@ const CreatePost = () => {
       
       setErrors("");
     } else {
-      setErrors('An error occurred during post creation.');
+      // setErrors('An error occurred during post creation.');
       const data = await response.json();
       setErrors(data.errors || {});
       
