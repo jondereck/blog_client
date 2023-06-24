@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import ErrorMessage from "./ErrorMessage";
@@ -9,7 +9,8 @@ const Post = () => {
   const [showDeleteWarning, setShowDeleteWarning] = useState(false);
   const { id } = useParams();
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('')
+  const [success, setSuccess] = useState('');
+  const [redirect,  setRedirect] = useState(false)
 
   useEffect(() => {
     // get the id using useparams
@@ -31,8 +32,7 @@ const Post = () => {
           response.json().then((data) => {
             setSuccess(data.success);
           });
-          // Navigate to a specific route after successful deletion
-          window.location.href = "/create"; // Replace "/posts" with your desired route
+          setRedirect(true)
         } else {
           response.json().then((data) => {
             setError(data.error);
@@ -44,6 +44,12 @@ const Post = () => {
         setError("An error occurred while deleting the post");
       });
   }
+
+
+  if (redirect) {
+    return <Navigate to={"/create"} />;
+  }
+
 
   const showDeleteWarningDialog = () => {
     setShowDeleteWarning(true);
