@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
 import ErrorMessage from "./ErrorMessage";
+import SuccessMessage from "./SuccessMessage";
 
 const EditPost = () => {
   const { id } = useParams();
@@ -100,7 +101,8 @@ const EditPost = () => {
           Update post
         </button>
       </form>
-      <ErrorMessage error={error} success={success} />
+      <ErrorMessage error={error}  />
+      <SuccessMessage success={success}/>
     </div>
   </div>
 </div>

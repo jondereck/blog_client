@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import ErrorMessage from './ErrorMessage';
 import FormError from './FormError';
+import { Navigate } from 'react-router-dom';
+import SuccessMessage from './SuccessMessage';
 
 
 const Signup = () => {
@@ -9,6 +11,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
 
   async function register(e) {
@@ -23,7 +26,7 @@ const Signup = () => {
           response.json().then((data) => {
             setSuccess(data.success);
             setTimeout(() =>{
-              window.location.href="/login";
+              setRedirect(true)
               console.log("redirecting to login");
             }, 2000);
           });
@@ -34,6 +37,10 @@ const Signup = () => {
         }
       })
   
+  }
+
+  if (redirect) {
+    return <Navigate to={'/login'}/>
   }
   
   return (
@@ -68,7 +75,8 @@ const Signup = () => {
             type="submit"
           >
             Register
-          </button><ErrorMessage error={error} success={success}/>
+          </button><ErrorMessage error={error} />
+          <SuccessMessage success={success}/>
         </form>
       </div>
       

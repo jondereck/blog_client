@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import {Navigate} from "react-router-dom"
 import { UserContext } from "../UserContext";
 import ErrorMessage from "./ErrorMessage";
+import SuccessMessage from "./SuccessMessage";
 
 
 const Login = () => {
@@ -82,7 +83,8 @@ const Login = () => {
           </button>
         </form>
       </div>
-    <ErrorMessage error={error} success={success}/>
+    <ErrorMessage error={error} />
+    <SuccessMessage success={success}/>
     </div>
   </div>
   
