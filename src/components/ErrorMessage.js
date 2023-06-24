@@ -7,7 +7,7 @@ const ErrorMessage = ({ error, success }) => {
     setDismissed(false); // Reset the dismissed state whenever there is a new error or success message
     const timeout = setTimeout(() => {
       setDismissed(true);
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(timeout); // Clear the timeout when the component is unmounted
@@ -39,3 +39,4 @@ const ErrorMessage = ({ error, success }) => {
 };
 
 export default ErrorMessage;
+
