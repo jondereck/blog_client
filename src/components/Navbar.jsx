@@ -3,11 +3,11 @@ import { MdNightsStay, MdWbSunny } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import SuccessMessage from "./SuccessMessage";
-import ErrorMessage from "./ErrorMessage";
+
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const {userInfo, setUserInfo} = useContext(UserContext);
-  const [errors, setErrors] = useState('');
+  // const [errors, setErrors] = useState('');
   const [success, setSuccess] = useState('');
   
   useEffect(() => {
@@ -71,7 +71,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     </div>
    
     <SuccessMessage success={success}/>
-          <ErrorMessage error={errors}/>
+         
   </div>
 
 </div>
