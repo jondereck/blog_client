@@ -30,7 +30,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       setSuccess("Succesfully logout");
       setTimeout(() => {
         setUserInfo(null);
-        window.location.reload();
+        window.location.href = `${window.location.origin}/?refresh=${Date.now()}`;
+        
       }, 1000);
     } 
     
