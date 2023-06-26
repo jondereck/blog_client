@@ -3,6 +3,7 @@ import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
 import Editor from "../Editor";
 import ErrorMessage from "./ErrorMessage";
+import SuccessMessage from "./SuccessMessage";
 import FormError from "./FormError";
 
 const CreatePost = () => {
@@ -30,17 +31,19 @@ const CreatePost = () => {
 
     // console.log(await response.json())
     if (response.ok) {
-      setSuccess("Successfully created post");
-      setTimeout(() => {
+      response.json().then((data) => {
+        setSuccess(data.success);
+        setTimeout(() => {
         setRedirect(true);
-      }, 2000);
+        }, 2000);
+      });
+
       
-      setErrors("");
+      
     } else {
       // setErrors('An error occurred during post creation.');
       const data = await response.json();
       setErrors(data.errors || {});
-      
     }
   }
   if (redirect) {
@@ -53,7 +56,7 @@ const CreatePost = () => {
         className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center 
         w-full h-full items-center"
       >
-        <div className="flex justify-center items-center mt-20 " >
+        <div className="flex justify-center items-center mt-20 ">
           <form
             encType="multipart/form-data"
             onSubmit={createNewPost}
@@ -66,7 +69,7 @@ const CreatePost = () => {
               type="title"
               placeholder="Title"
             />
-            <FormError  error={errors.title} />
+            <FormError error={errors.title} />
 
             <input
               className="p-2 bg-transparent border-2 rounded-md focus:outline-none mt-2"
@@ -82,15 +85,16 @@ const CreatePost = () => {
               type="file"
               onChange={(e) => setFiles(e.target.files)}
             />
-            <FormError error={errors.cover}/>
+            <FormError error={errors.cover} />
             <Editor onChange={setContent} value={content} />
-            <FormError error={errors.content}/>
+            <FormError error={errors.content} />
             <button className="p-2 mt-4 bg-gradient-to-r from-cyan-500 to-blue-500">
               Create post
             </button>
           </form>
         </div>
-        <ErrorMessage success={success}/>
+        <ErrorMessage error={errors}/>
+        <SuccessMessage success={success} />
       </div>
     </div>
   );

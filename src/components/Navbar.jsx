@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdNightsStay, MdWbSunny } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import SuccessMessage from "./SuccessMessage";
+import ErrorMessage from "./ErrorMessage";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const {userInfo, setUserInfo} = useContext(UserContext);
+  const [errors, setErrors] = useState('');
+  const [success, setSuccess] = useState('');
   
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/profile`, {
@@ -16,26 +20,35 @@ const Navbar = ({ darkMode, setDarkMode }) => {
     });
   }, [setUserInfo]);
 
-  function logout() {
-    fetch(`${process.env.REACT_APP_API_URL}/logout`, {
+  async function logout() {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/logout`, {
     credentials: 'include',
     method: 'POST'
     });
-    setUserInfo(null)
+
+    if(response.ok) {
+      setSuccess("Succesfully logout");
+      setTimeout(() => {
+        setUserInfo(null);
+        window.location.reload();
+      }, 1000);
+    } 
+    
   }
   const username = userInfo?.username
   return (
    <div className="w-full h-20 px-4 text-black dark:text-white bg-white dark:bg-black duration-500 dark:duration-500 fixed">
   <div className="mx-auto py-4 flex justify-between items-center">
     <Link to="">
-      <h2 className="text-4xl font-bold">Blog</h2>
+      <h2 className="text-4xl font-light font-nunito">Blog</h2>
     </Link>
 
     <div className="flex items-center space-x-4">
       {username ? (
         <>
-          <Link to="/create" className="hover:scale-105 duration-200">Create new post</Link>
+          <Link to="/create" className="hover:scale-105 duration-200 ">Create new post</Link>
           <p onClick={logout} className="hover:scale-105 duration-200">Logout</p>
+          
         </>
       ) : (
         <>
@@ -54,8 +67,13 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <MdNightsStay size={30} className="text-2xl" />
         )}
       </div>
+      
     </div>
+   
+    <SuccessMessage success={success}/>
+          <ErrorMessage error={errors}/>
   </div>
+
 </div>
 
   );

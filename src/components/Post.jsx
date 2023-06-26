@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import ErrorMessage from "./ErrorMessage";
+import SuccessMessage from "./SuccessMessage";
 
 const Post = () => {
   const [postInfo, setPostInfo] = useState(null);
@@ -31,11 +32,17 @@ const Post = () => {
         if (response.ok) {
           response.json().then((data) => {
             setSuccess(data.success);
+            setTimeout(() => {
+                  setRedirect(true)
+            }, 3000);
           });
-          setRedirect(true)
+      
         } else {
           response.json().then((data) => {
-            setError(data.error);
+            setTimeout(() => {
+              setError(data.error);
+            window.location.reload();
+            }, 3000);
           });
         }
       })
@@ -47,7 +54,7 @@ const Post = () => {
 
 
   if (redirect) {
-    return <Navigate to={"/create"} />;
+    return <Navigate to={"/"} />;
   }
 
 
@@ -77,7 +84,7 @@ const Post = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-screen-lg p-4 flex flex-col h-full w-full pt-20  ">
+      <div className="items-center mx-auto max-w-screen-lg p-4 flex flex-col h-full w-full pt-20  ">
         <div className="">
           <h1 className="text-4xl font-bold mb-4">{postInfo.title}</h1>
           <div className="my-2 text-gray-400">
@@ -144,9 +151,10 @@ const Post = () => {
               </div>
             </div>
           </div>
-        )}
+        )}  <ErrorMessage  error={error}/>
+      <SuccessMessage  success={success}/>
       </div>
-      <ErrorMessage error={error} success={success} />
+    
     </div>
   );
 };

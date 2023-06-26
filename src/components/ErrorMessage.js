@@ -15,21 +15,17 @@ const ErrorMessage = ({ error }) => {
   }, [error]);
 
   const containerClassName =
-    "fixed justify-center bottom-4 sm:bottom-4 sm:right-4 sm:right-auto";
+    "fixed left-0 right-0 flex justify-center bottom-4 sm:bottom-4";
 
   if (!error || dismissed) {
     return null;
   }
 
-  const alertClassName = "bg-red-500";
   const borderClassName = "border-red-400 bg-red-100 text-red-700";
 
   return (
     <div className={containerClassName}>
-      <div className={`${alertClassName} text-white font-bold rounded-t px-4 py-2`}>
-        <span>Error</span>
-      </div>
-      <div className={`${borderClassName} border border-t-0 rounded-b px-4 py-3`}>
+      <div className={`${borderClassName} border  rounded-b px-4 py-3`}>
         <p>{error}</p>
       </div>
     </div>

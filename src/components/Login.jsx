@@ -32,7 +32,7 @@ const Login = () => {
         setSuccess("Login success");
         setTimeout(() => {
          setRedirect(true); 
-        }, 2000);
+        }, 1000);
          
       })
      
