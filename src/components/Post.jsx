@@ -41,7 +41,7 @@ const Post = () => {
           response.json().then((data) => {
             setTimeout(() => {
               setError(data.error);
-            window.location.reload();
+            window.location.href = `${window.location.origin}/?refresh${Date.now()}`
             }, 3000);
           });
         }
