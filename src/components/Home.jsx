@@ -45,9 +45,9 @@ const Home = () => {
         <Link to={`/post/${_id}`}>
           <h2 className="text-4xl pt-4 font-bold ">{title}</h2>
         </Link>
-        <div className="flex items-center justify-between">
-          <p className="font-bold text-sm pr-4">{author.username}</p>
-          <time className="text-sm ">{formatDate(createdAt)}</time>
+        <div className="flex pt-2 font-nunito font-extralight from-neutral-400 ">
+          <p className="font-bold text-sm pr-4 ">{author.username} | </p>
+          <time className="text-sm  ">{formatDate(createdAt)}</time>
         </div>
         <p className="md:text-xl my-2 text-sm">{summary}...</p>
       </div>
