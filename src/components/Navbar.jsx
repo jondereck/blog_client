@@ -47,19 +47,21 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <h2 className="text-4xl font-light font-nunito">Blog</h2>
         </Link>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           {username ? (
             <>
               <div className="flex justify-end ">
                 <Link to="/create" className="hover:scale-105 duration-200 ">
                   <button>
-                    <span className="px-4">
+                    <span>
                       <FiEdit size={20} className="inline-block" />
                       Create new post
                     </span>
                   </button>
                 </Link>
-                <button onClick={logout} className="hover:scale-105 duration-200">
+                
+              </div>
+              <button onClick={logout} className="hover:scale-105 duration-200">
                 <span className="hidden sm:inline-block">
                   <SlLogout size={20} className="inline-block m-2" />
                   Logout
@@ -68,8 +70,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   <SlLogout size={20} className="inline-block" />
                 </span>
               </button>
-              </div>
-              
             </>
           ) : (
             <>
