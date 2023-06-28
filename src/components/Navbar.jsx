@@ -53,7 +53,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 <Link to="/create" className="hover:scale-105 duration-200 ">
                   <button>
                     <span>
-                      <FiEdit size={25} className="inline-block" />
+                      <FiEdit size={20} className="inline-block" />
                       Create new post
                     </span>
                   </button>
@@ -61,11 +61,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </div>
               <button onClick={logout} className="hover:scale-105 duration-200">
                 <span className="hidden sm:inline-block">
-                  <SlLogout size={25} className="inline-block m-2" />
+                  <SlLogout size={20} className="inline-block m-2" />
                   Logout
                 </span>
                 <span className="sm:hidden">
-                  <SlLogout size={25} className="inline-block" />
+                  <SlLogout size={20} className="inline-block" />
                 </span>
               </button>
             </>
@@ -75,7 +75,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 <Link to="/login" className="hover:scale-105 duration-200">
                   <button>
                     <span>
-                      <SlLogin size={25} className="inline-block m-2" />
+                      <SlLogin size={20} className="inline-block m-2" />
                       Login
                     </span>
                   </button>
@@ -84,7 +84,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               <Link to="/signup" className="hover:scale-105 duration-200">
                 <button>
                   <span>
-                    <BsPersonAdd size={25} className="inline-block m-2" />
+                    <BsPersonAdd size={20} className="inline-block m-2" />
                     Sign up
                   </span>
                 </button>
@@ -96,9 +96,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             className="cursor-pointer"
           >
             {darkMode ? (
-              <MdWbSunny size={30} className="text-2xl" />
+              <MdWbSunny size={25} className="text-2xl" />
             ) : (
-              <MdNightsStay size={30} className="text-2xl" />
+              <MdNightsStay size={25} className="text-2xl" />
             )}
           </div>
         </div>
