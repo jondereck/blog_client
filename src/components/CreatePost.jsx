@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
 import Editor from "../Editor";
-import ErrorMessage from "./ErrorMessage";
+
 import SuccessMessage from "./SuccessMessage";
 import FormError from "./FormError";
 
@@ -41,9 +41,8 @@ const CreatePost = () => {
       
       
     } else {
-      // setErrors('An error occurred during post creation.');
       const data = await response.json();
-      setErrors(data.errors || {});
+      setErrors(data.errors || {}); // Update the errors state variable with the returned errors
     }
   }
   if (redirect) {
@@ -93,7 +92,7 @@ const CreatePost = () => {
             </button>
           </form>
         </div>
-        <ErrorMessage error={errors}/>
+        
         <SuccessMessage success={success} />
       </div>
     </div>

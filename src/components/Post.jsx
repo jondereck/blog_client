@@ -39,8 +39,8 @@ const Post = () => {
       
         } else {
           response.json().then((data) => {
+            setError(data.error);
             setTimeout(() => {
-              setError(data.error);
             window.location.href = `${window.location.origin}/?refresh${Date.now()}`
             }, 3000);
           });
