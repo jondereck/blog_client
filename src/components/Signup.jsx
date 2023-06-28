@@ -3,6 +3,7 @@ import ErrorMessage from './ErrorMessage';
 import FormError from './FormError';
 import { Navigate } from 'react-router-dom';
 import SuccessMessage from './SuccessMessage';
+import imgSignup from '../assets/img/singup.png'
 
 
 const Signup = () => {
@@ -46,6 +47,7 @@ const Signup = () => {
   return (
     <div className="h-screen w-full">
     <div className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center w-full h-full items-center">
+    <img src={imgSignup} alt="Example" className="w-32 h-32 sm:w-48 sm:h-48" />
       <div>
         <p className="text-4xl font-bold text-center my-8">Sign Up</p>
         <p className="text-sm text-center p-4">Let's create a new journey</p>

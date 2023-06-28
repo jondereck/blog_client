@@ -3,6 +3,7 @@ import {Navigate} from "react-router-dom"
 import { UserContext } from "../UserContext";
 import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
+import imgLogin from "../assets/img/login.png";
 
 
 const Login = () => {
@@ -54,7 +55,10 @@ const Login = () => {
   return (
     <div className="h-screen w-full">
     <div className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center w-full h-full items-center">
+    <img src={imgLogin} alt="Example" className="w-32 h-32 sm:w-48 sm:h-48" />
       <div>
+      
+
         <p className="text-4xl font-bold text-center my-8">Login</p>
         <p className="text-sm text-center p-4">Good to see you again</p>
       </div>

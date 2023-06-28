@@ -7,6 +7,7 @@ import { SlLogin, SlLogout } from "react-icons/sl";
 import { BsPersonAdd } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 
+
 const Navbar = ({ darkMode, setDarkMode }) => {
   const { userInfo, setUserInfo } = useContext(UserContext);
   // const [errors, setErrors] = useState('');
@@ -49,17 +50,16 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         <div className="flex items-center space-x-4">
           {username ? (
             <>
-              <div className="flex justify-end m-2">
+              <div className="flex justify-end ">
                 <Link to="/create" className="hover:scale-105 duration-200 ">
                   <button>
-                    <span>
+                    <span className="px-4">
                       <FiEdit size={20} className="inline-block" />
                       Create new post
                     </span>
                   </button>
                 </Link>
-              </div>
-              <button onClick={logout} className="hover:scale-105 duration-200">
+                <button onClick={logout} className="hover:scale-105 duration-200">
                 <span className="hidden sm:inline-block">
                   <SlLogout size={20} className="inline-block m-2" />
                   Logout
@@ -68,10 +68,12 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   <SlLogout size={20} className="inline-block" />
                 </span>
               </button>
+              </div>
+              
             </>
           ) : (
             <>
-              <div className="flex justify-end m-2">
+              <div className="flex justify-end ">
                 <Link to="/login" className="hover:scale-105 duration-200">
                   <button>
                     <span>
@@ -80,8 +82,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                     </span>
                   </button>
                 </Link>
-              </div>
-              <Link to="/signup" className="hover:scale-105 duration-200">
+                <Link to="/signup" className="hover:scale-105 duration-200">
                 <button>
                   <span>
                     <BsPersonAdd size={20} className="inline-block m-2" />
@@ -89,6 +90,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   </span>
                 </button>
               </Link>
+              </div>
+              
             </>
           )}
           <div
