@@ -53,7 +53,7 @@ const Home = () => {
       </div>
       <Link to={`/post/${_id}`}>
         <div className="flex items-center justify-center">
-          <img className="h-100 w-100 p-10 object-cover rounded-md" src={`${process.env.REACT_APP_API_URL}/${cover}`} alt="" />
+          <img className="h-100 w-100  object-cover rounded-md" src={`${process.env.REACT_APP_API_URL}/${cover}`} alt="" />
         </div>
       </Link>
     </div>

@@ -72,23 +72,21 @@ const EditPost = () => {
     <div className="h-screen w-full max-h-max px-4">
       <div className="mx-auto max-w-screen-lg p-4 flex flex-col justify-center w-full h-full items-center">
         <div className="flex justify-center items-center">
-          
           <form
             enctype="multipart/form-data"
             onSubmit={updatePost}
             className="flex flex-col w-full"
-          > 
-          
-          {existingCover && (
-              <div className="max-h-96 flex items-center justify-center mb-4 pt-20 ">
+          >
+            {existingCover && (
+              <div className="max-h-96 w-full flex items-center justify-center mb-4 mt-32">
                 <img
-                  className="h-auto max-h-96 w-auto max-w-full p-10 object-cover rounded-md"
+                  className="h-auto max-h-96 max-w-full p-10 object-cover rounded-md"
                   src={`${process.env.REACT_APP_API_URL}/${existingCover}`}
                   alt=""
                 />
               </div>
             )}
-           
+
             <input
               className="p-2 bg-transparent border-2 rounded-md focus:outline-none mb-4"
               value={title}
@@ -109,8 +107,6 @@ const EditPost = () => {
               placeholder="Summary"
               onChange={(e) => setFiles(e.target.files)}
             />
-          
-          
 
             <Editor onChange={setContent} value={content} />
 
